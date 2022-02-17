@@ -12,7 +12,7 @@ export class NovaTransferenciaComponent {
   valor: number;
   destino: number;
 
-  transferir() {
+  public transferir(): void {
     console.log('Nova tranferencia realizada');
     this.aoTransferir.emit(
       {
@@ -20,5 +20,12 @@ export class NovaTransferenciaComponent {
         destino: this.destino
       }
     );
+
+    this.limparCampos();
+  }
+
+  private limparCampos(): void {
+    this.valor = null;
+    this.destino = null;
   }
 }
