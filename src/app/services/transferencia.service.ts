@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Transferencia } from '../models/transferencia.model';
 
 @Injectable({
@@ -13,8 +14,8 @@ export class TransferenciaService {
     this.listaTransferencia = [];
   }
 
-  public adicionar(transferencia: Transferencia): void {
-    this.listaTransferencia.push({...transferencia, data: new Date()});
+  public adicionar(transferencia: Transferencia): Observable<Transferencia> {
+    return this.httpClient.post<Transferencia>(this.urlApiRest, {...transferencia, data: new Date()});
   }
 
   public get transferencias(): Array<Transferencia> {
